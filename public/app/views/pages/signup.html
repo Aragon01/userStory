@@ -1,0 +1,23 @@
+<!--Signup page that calls the signupUser() method from our userCtrl.js -->
+
+<!--ng-controller adds a controller to the application view -->
+<div class="container" ng-controller="UserCreateController as user">
+	<div class="row">
+		<div class="col-sm-6 col-md-4 col-md-offset-4">
+			<h1>SignUp!</h1>
+			<!-- post - appends form-data inside the body of the HTTP request
+			ng-submit runs the function when the form is submitted -->
+			<form class="form-signin" method="post" ng-submit="user.signupUser()">
+				
+				name: <input type="text" name="name" class="form-control" ng-model="user.userData.name">
+				<!--ng-model binds the value of HTML controls input,select,textarea)
+				to application data -->
+				Username: <input type="text" name="username" class="form-control" ng-model="user.userData.username">
+
+				Password: <input type="password" name="password" class="form-control" ng-model="user.userData.password">
+
+				<button type="submit" class="btn btn-danger">Signup</button>
+			</form>
+		</div>
+	</div>
+</div>

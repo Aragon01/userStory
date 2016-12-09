@@ -1,0 +1,19 @@
+<!--if the user is logged in show story box input -->
+<div class="row">
+	<div class="col-md-3"></div>
+
+	<div class="col-md-4">
+		<div class="row">
+			<div class="panel panel-success">
+				<div class="panel-heading">Your Stories</div>
+				<!--The ng-repeat directive repeats a set of HTML, a given number of times. The set of HTML will be repeated once per item in a collection. The collection must be an array or an object. Perfect for making a HTML table, displaying one table row for each object, and one table data for each object property. -->
+				<div class="panel-body" ng-repeat="each in story.stories | reverse">
+					<p>{{each.content}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3"></div>
+</div>
+

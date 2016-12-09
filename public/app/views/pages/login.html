@@ -1,0 +1,21 @@
+<!--Login page that calls the doLogin() method from our mainCtrl.js -->
+
+<!--ng-controller adds a controller to the application view -->
+<div class="container" ng-controller="MainController as login">
+	<div class="row">
+		<div class="col-sm-6 col-md-4 col-md-offset-4">
+			<h1>Login</h1>
+			<!-- post - appends form-data inside the body of the HTTP request
+			ng-submit runs the function when the form is submitted -->
+			<form class="form-signin" method="post" ng-submit="login.doLogin()">
+				<!--ng-model binds the value of HTML controls(input,select,textarea)
+				to application data -->
+				Username: <input type="text" name="username" class="form-control" ng-model="login.loginData.username">
+
+				Password: <input type="password" name="password" class="form-control" ng-model="login.loginData.password">
+
+				<button type="submit" class="btn btn-success">Login</button>
+			</form>
+		</div>
+	</div>
+</div>

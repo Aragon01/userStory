@@ -1,0 +1,42 @@
+<!--if the user is not logged in show login jumbotron -->
+<div class="jumbotron text-center" ng-if="!main.loggedIn">
+	<div>
+		<h1>If you have balls Sign up!</h1>
+	</div>
+
+	<div>
+		<p>Login to write your story</p>
+		<a href="/login" class="btn btn-primary">Login</a>
+	</div>
+</div>
+
+<!--if the user is logged in show story box input -->
+<div class="row" ng-if="main.loggedIn">
+	<div class="col-md-3"></div>
+
+	<div class="col-md-4" ng-controller="StoryController as story">
+		<div class="row">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Write your Story</div>
+
+				<div class="panel-body">
+					<form ng-submit="story.createStory()">
+						<input class="form-control input-lg" type="text" name="story" ng-model="story.storyData.content" placeholder="...." required>
+					</form>
+				</div>
+			</div>
+
+			<div class="panel panel-success">
+				<div class="panel-heading">Your Stories</div>
+				<!--The ng-repeat directive repeats a set of HTML, a given number of times. The set of HTML will be repeated once per item in a collection. The collection must be an array or an object. Perfect for making a HTML table, displaying one table row for each object, and one table data for each object property. -->
+				<div class="panel-body" ng-repeat="each in story.stories | reverse"> <!--The reverse is a customer filter but can be a built in filter to filter the array of objects -->
+					<p>{{each.content}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3"></div>
+</div>
+
+

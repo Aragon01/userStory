@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--Tells this document to use MyApp for the angular application-->
+<html ng-app="MyApp">
+<head>
+
+	<!--Specifies the base URL for all relative URLs in the page -->
+	<base href='/'>
+	<title>User Story</title>
+	<!--CDN for twitter bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!--CDN script for angular js -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+	<!--CDN script to allow the ng-Route directive to be used -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.0-rc.2/angular-route.min.js"></script>
+	<!--Script to call the socket.io file -->
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+	<!--Requiring angular services -->
+	<script type="text/javascript" src="app/services/authService.js"></script>
+	<script type="text/javascript" src="app/services/userService.js"></script>
+	<script type="text/javascript" src="app/services/storyService.js"></script>
+
+	<!--Controllers -->
+	<script type="text/javascript" src="app/controllers/mainCtrl.js"></script>
+	<script type="text/javascript" src="app/controllers/userCtrl.js"></script>
+	<script type="text/javascript" src="app/controllers/storyCtrl.js"></script>
+
+	<!--Directives -->
+	<script type="text/javascript" src="app/directives/reverse.js"></script>
+
+
+	<!--Pick up the app.routes.js source -->
+	<script type="text/javascript" src="app/app.routes.js"></script>
+	<!--Pick up the app.js source -->
+	<script type="text/javascript" src="app/app.js"></script>
+
+</head>
+<!--to check if the user is logged in or not -->
+<body ng-controller="MainController as main">
+<!--This header will display our navigation bar across all pages -->
+<header>
+	<!--ng-if directive is if some condition happens the running order depends on the ng-if statmen -->
+	<div class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<a href="/allStories" class="navbar-brand">
+					<span class="glyphicon glyphicon-book">UserStories</span>
+				</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="/users"></a>
+				</li>
+			</ul>
+			<!--changes the content of the navbar on the right-hand side -->
+			<ul class="nav navbar-nav navbar-right">
+				<!--The ng-if directive removes the HTML element if the expression evaluates to false.If the if statement evaluates to true, a copy of the Element is added in the DOM. -->
+				<li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
+				<li ng-if="!main.loggedIn"><a href="/signup">Signup</a></li>
+				<li ng-if="main.loggedIn"><a href="#">Hello {{main.user.username}}</a></li>	
+				<!--The ng-click directive tells AngularJS what to do when an HTML element is clicked. -->
+				<li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>	
+			</ul>
+		</div>
+	</div>
+</header>
+
+<!--creates a container to hold our home page -->
+<main class="container">
+
+<!--Making this a ng-view will allow our home page to inherit all the scripts from this html file
+this ng-view is a container that holds the content provided by routing -->
+	<div ng-view></div>
+
+</main>
+</body>
+</html>
